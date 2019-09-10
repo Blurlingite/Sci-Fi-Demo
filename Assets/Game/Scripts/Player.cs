@@ -35,6 +35,10 @@ public class Player : MonoBehaviour
 
     Vector3 velocity = direction * _speed;
     velocity.y -= _gravity; // subtract gravity from y to make player drop to the ground instead of hovering
+
+    // TransformDirection() converts local space to world(global) space. This will make the main camera we nested in the Player face the right way (the right way being the position of the Player in world space(in relation to all the other objects rather than just itself))
+    // We just need to pass in the direction (velocity)
+    velocity = transform.transform.TransformDirection(velocity);
     _controller.Move(velocity * _speed * Time.deltaTime);
   }
 

@@ -107,6 +107,8 @@
      <Compile Include="Assets\Game\Level_Dont_Touch\Standard Assets\Utility\TimedObjectDestructor.cs" />
      <Compile Include="Assets\Game\Level_Dont_Touch\Standard Assets\Utility\WaypointCircuit.cs" />
      <Compile Include="Assets\Game\Level_Dont_Touch\Standard Assets\Utility\WaypointProgressTracker.cs" />
+     <Compile Include="Assets\Game\Scripts\LookX.cs" />
+     <Compile Include="Assets\Game\Scripts\LookY.cs" />
      <Compile Include="Assets\Game\Scripts\Player.cs" />
      <None Include="Assets\Game\Level_Dont_Touch\Environment_Model\Cinema Suite\Cinema Themes\ReadMe.txt" />
      <None Include="Assets\Game\Level_Dont_Touch\Environment_Model\Fonts\OFL.txt" />

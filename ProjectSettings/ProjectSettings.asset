@@ -644,10 +644,10 @@ PlayerSettings:
   facebookXfbml: 0
   facebookFrictionlessRequests: 1
   apiCompatibilityLevel: 6
-  cloudProjectId: 4232bab7-e253-4dab-9622-013b1e7faa3a
+  cloudProjectId: 
   framebufferDepthMemorylessMode: 0
-  projectName: Sci-Fi Demo
-  organizationId: blurlingite
+  projectName: 
+  organizationId: 
   cloudEnabled: 0
   enableNativePlatformBackendsForNewInputSystem: 0
   disableOldInputManagerSupport: 0
