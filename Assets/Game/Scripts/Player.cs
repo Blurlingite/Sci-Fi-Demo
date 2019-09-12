@@ -13,11 +13,23 @@ public class Player : MonoBehaviour
   void Start()
   {
     _controller = GetComponent<CharacterController>();
+    // make mouse cursor invisible
+    Cursor.visible = false;
+    // lock the cursor to the center of the screen so the player doesn't have to align their mouse to the crosshair to aim
+    // This will make it hard to quit out of the Unity editor if the mouse cursor can't move from the center so we have to undo this when the player presses a key in the Update()
+    Cursor.lockState = CursorLockMode.Locked;
   }
 
   // Update is called once per frame
   void Update()
   {
+
+    // when player presses the ESCAPE key, make the mouse cursor visible again and unlock it from the center
+    if (Input.GetKeyDown(KeyCode.Escape))
+    {
+      Cursor.visible = true;
+      Cursor.lockState = CursorLockMode.None;
+    }
     CalculateMovement();
 
   }
