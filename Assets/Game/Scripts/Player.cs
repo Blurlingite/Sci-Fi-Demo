@@ -8,6 +8,8 @@ public class Player : MonoBehaviour
   private CharacterController _controller;
   private float _speed = 3.5f;
   private float _gravity = 9.81f;
+  [SerializeField]
+  private GameObject _muzzleFlash;
 
   // Start is called before the first frame update
   void Start()
@@ -31,12 +33,16 @@ public class Player : MonoBehaviour
       Cursor.lockState = CursorLockMode.None;
     }
 
-    // when you press the left mouse button we want to shoot a ray from the main camera (since that's what the player is using to look around)
+    // when you press and hold the left mouse button (0) we want to shoot a ray from the main camera (since that's what the player is using to look around)
     // We define where the ray's starting position is with rayOrigin
     // Camera.main gets the main camera
     // ViewportPointToRay determines where the ray is fired from the camera. It will be from what your camera views (as opposed to something like ScreenPointToRay). It is more reliable as it can now fire from where the player can actually see. On all axes, it uses a scale of 0 to 1. We want it to be the center (where the crosshair is) so we pass in 0.5f for the x, 0.5f for the y and we aren't concerned with the z so we put 0
-    if (Input.GetMouseButtonDown(0))
+    if (Input.GetMouseButton(0))
     {
+
+      // turn on bullet firing animation
+      _muzzleFlash.SetActive(true);
+
       Ray rayOrigin = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
 
       // used to store info about what the ray hits
@@ -48,6 +54,11 @@ public class Player : MonoBehaviour
         // since hitInfo stores everything about the object it hits, we can get info from all it's components. Here we get the name of the object by accessing it's transform and then the name
         Debug.Log("Hit " + hitInfo.transform.name);
       }
+    }
+    else
+    {
+      _muzzleFlash.SetActive(false);
+
     }
 
 
