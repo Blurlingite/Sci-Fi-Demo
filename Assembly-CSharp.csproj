@@ -111,6 +111,7 @@
      <Compile Include="Assets\Game\Scripts\LookX.cs" />
      <Compile Include="Assets\Game\Scripts\LookY.cs" />
      <Compile Include="Assets\Game\Scripts\Player.cs" />
+     <Compile Include="Assets\Game\Scripts\SharkShop.cs" />
      <Compile Include="Assets\Game\Scripts\UIManager.cs" />
      <None Include="Assets\Game\Level_Dont_Touch\Environment_Model\Cinema Suite\Cinema Themes\ReadMe.txt" />
      <None Include="Assets\Game\Level_Dont_Touch\Environment_Model\Fonts\OFL.txt" />

@@ -12,6 +12,8 @@ public class Player : MonoBehaviour
   private GameObject _muzzleFlash;
   [SerializeField]
   private GameObject _hitMarkerPrefab;
+  [SerializeField]
+  private GameObject _weapon;
 
   private UIManager _uiManager;
 
@@ -23,6 +25,7 @@ public class Player : MonoBehaviour
 
   private bool _isReloading = false;
   public bool hasCoin = false;
+  public bool isWeaponEnabled = false;
 
   void Start()
   {
@@ -62,7 +65,7 @@ public class Player : MonoBehaviour
     // Camera.main gets the main camera
     // ViewportPointToRay determines where the ray is fired from the camera. It will be from what your camera views (as opposed to something like ScreenPointToRay). It is more reliable as it can now fire from where the player can actually see. On all axes, it uses a scale of 0 to 1. We want it to be the center (where the crosshair is) so we pass in 0.5f for the x, 0.5f for the y and we aren't concerned with the z so we put 0
     // the if statement should include the check for _currentAmmo b/c if we put another if statement within this one, as long as you held down the left mouse button the first time, you'll keep shooting even when out of ammo
-    if (Input.GetMouseButton(0) && _currentAmmo > 0)
+    if (Input.GetMouseButton(0) && _currentAmmo > 0 && isWeaponEnabled == true)
     {
 
       Shoot();
@@ -143,6 +146,12 @@ public class Player : MonoBehaviour
       // destroy hit marker so it doesn't clutter the hierarchy
       Destroy(hitMarker, 1f);
     }
+  }
+
+  public void EnableWeapons()
+  {
+    _weapon.SetActive(true);
+
   }
 
   IEnumerator Reload()
