@@ -10,6 +10,9 @@ public class Player : MonoBehaviour
   private float _gravity = 9.81f;
   [SerializeField]
   private GameObject _muzzleFlash;
+  [SerializeField]
+  private GameObject _hitMarkerPrefab;
+
 
   // Start is called before the first frame update
   void Start()
@@ -53,6 +56,17 @@ public class Player : MonoBehaviour
       {
         // since hitInfo stores everything about the object it hits, we can get info from all it's components. Here we get the name of the object by accessing it's transform and then the name
         Debug.Log("Hit " + hitInfo.transform.name);
+
+        // Instantiate a hit marker where you shot at The params are: 
+        // 1) the hit marker
+        // 2) The point at which you shot (which we can get from the hitInfo variable)
+        // 3) The direction the effect should face
+        // hitInfo.point is where the ray hit the collider in world space 
+
+        // hitInfo.normal is the normal of the surface the ray hit, which is the perpendicular Vector (the normal will change depending on what kind of surface you hit)
+        GameObject hitMarker = Instantiate(_hitMarkerPrefab, hitInfo.point, Quaternion.LookRotation(hitInfo.normal));
+        // destroy hit marker so it doesn't clutter the hierarchy
+        Destroy(hitMarker, 1f);
       }
     }
     else
