@@ -30,6 +30,28 @@ public class Player : MonoBehaviour
       Cursor.visible = true;
       Cursor.lockState = CursorLockMode.None;
     }
+
+    // when you press the left mouse button we want to shoot a ray from the main camera (since that's what the player is using to look around)
+    // We define where the ray's starting position is with rayOrigin
+    // Camera.main gets the main camera
+    // ViewportPointToRay determines where the ray is fired from the camera. It will be from what your camera views (as opposed to something like ScreenPointToRay). It is more reliable as it can now fire from where the player can actually see. On all axes, it uses a scale of 0 to 1. We want it to be the center (where the crosshair is) so we pass in 0.5f for the x, 0.5f for the y and we aren't concerned with the z so we put 0
+    if (Input.GetMouseButtonDown(0))
+    {
+      Ray rayOrigin = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
+
+      // used to store info about what the ray hits
+      RaycastHit hitInfo;
+
+      // Physics.Raycast() is what actually casts the 3D ray so we can check if we hit any colliders. There are many different versions with different parameters but we will use the one that needs 2 params: the ray's origin and the info on what it hits, which we have declared a variable for above (we need to use the "out" keyword as well). The "out" lets us output whatever we hit into the hitInfo variable
+      if (Physics.Raycast(rayOrigin, out hitInfo))
+      {
+        // since hitInfo stores everything about the object it hits, we can get info from all it's components. Here we get the name of the object by accessing it's transform and then the name
+        Debug.Log("Hit " + hitInfo.transform.name);
+      }
+    }
+
+
+
     CalculateMovement();
 
   }
