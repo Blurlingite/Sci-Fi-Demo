@@ -22,7 +22,7 @@ public class Player : MonoBehaviour
   private int _maxAmmo = 50;
 
   private bool _isReloading = false;
-  // Start is called before the first frame update
+  public bool hasCoin = false;
 
   void Start()
   {
