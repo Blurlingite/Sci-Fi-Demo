@@ -13,6 +13,9 @@ public class Player : MonoBehaviour
   [SerializeField]
   private GameObject _hitMarkerPrefab;
 
+  [SerializeField]
+  private AudioSource _weaponAudio;
+
 
   // Start is called before the first frame update
   void Start()
@@ -46,6 +49,12 @@ public class Player : MonoBehaviour
       // turn on bullet firing animation
       _muzzleFlash.SetActive(true);
 
+      // the audio for the weapon was playing too fast so we need to check if it is not playing and if not, play the audio. If it is, do nothing so the sound has time to play
+      if (_weaponAudio.isPlaying == false)
+      {
+        _weaponAudio.Play();
+      }
+
       Ray rayOrigin = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
 
       // used to store info about what the ray hits
@@ -72,6 +81,7 @@ public class Player : MonoBehaviour
     else
     {
       _muzzleFlash.SetActive(false);
+      _weaponAudio.Stop();
 
     }
 
