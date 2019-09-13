@@ -145,6 +145,14 @@ public class Player : MonoBehaviour
       GameObject hitMarker = Instantiate(_hitMarkerPrefab, hitInfo.point, Quaternion.LookRotation(hitInfo.normal));
       // destroy hit marker so it doesn't clutter the hierarchy
       Destroy(hitMarker, 1f);
+
+      // check if we hit the crate (if we did the crate's info will be stored in hitInfo) and then destroy it
+      Destructible crate = hitInfo.transform.GetComponent<Destructible>();
+
+      if (crate != null)
+      {
+        crate.DestroyCrate();
+      }
     }
   }
 
